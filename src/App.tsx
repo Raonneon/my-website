@@ -5,6 +5,8 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import ThemeToggle from './components/ThemeToggle'
 import { useTheme } from './context/ThemeContext'
+import Weather from './pages/Weather'
+
 
 function App() {
   const { theme } = useTheme()
@@ -52,9 +54,22 @@ function App() {
             </li>
           </ul>
           <ThemeToggle />
+          <li>
+  <Link 
+    to="/weather" 
+    style={{ 
+      color: 'white', 
+      textDecoration: 'none',
+      fontSize: '1.1rem'
+    }}
+  >
+    Погода
+  </Link>
+</li>
         </nav>
 
         <Routes>
+          <Route path="/weather" element={<Weather />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
