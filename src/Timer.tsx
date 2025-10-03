@@ -3,21 +3,22 @@ import { useState, useEffect } from 'react'
 function Timer() {
   const [seconds, setSeconds] = useState<number>(0)
   const [isRunning, setIsRunning] = useState<boolean>(false)
-
+    
+    
   useEffect(() => {
-    let interval: number | undefined
+  let interval: ReturnType<typeof setInterval> | undefined
 
-    if (isRunning) {
-      interval = setInterval(() => {
-        setSeconds(prev => prev + 1)
-      }, 1000)
-    }
+  if (isRunning) {
+    interval = setInterval(() => {
+      setSeconds(prev => prev + 1)
+    }, 1000)
+  }
 
-    // Cleanup функция - выполнится при размонтировании
-    return () => {
-      if (interval) clearInterval(interval)
-    }
-  }, [isRunning]) // Зависимости - перезапускается когда меняется isRunning
+     // Cleanup функция - выполнится при размонтировании
+  return () => {
+    if (interval) clearInterval(interval)
+  }
+}, [isRunning])  // Зависимости - перезапускается когда меняется isRunning
 
   const formatTime = (secs: number) => {
     const mins = Math.floor(secs / 60)
